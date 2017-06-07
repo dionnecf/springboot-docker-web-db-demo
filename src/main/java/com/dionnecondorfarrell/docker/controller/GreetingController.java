@@ -12,6 +12,6 @@ public class GreetingController {
     @RequestMapping("/")
     public String greeting(){
 
-        return "<h1>Hi, Welcome to my ToDoList app running in Docker with Mysql... :)</h1>";
+        return "<h1>Hi, Welcome to my ToDoList app running in Docker. Its a Java SpringBoot App and Mysql DB... :)</h1>";
     }
 }
