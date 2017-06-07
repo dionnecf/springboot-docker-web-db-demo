@@ -1,0 +1,38 @@
+version: '3'
+services:
+  springwebapp:
+    build:
+      context: .
+      dockerfile: springwebapp.Dockerfile
+    image: dionnecf/springwebapp
+    ports:
+      - "8080:8080"
+    networks:
+      - net-todo
+    volumes:
+    - .:/vol/development
+    depends_on:
+      - dcfmysqlserver
+    container_name: springwebapp
+
+  dcfmysqlserver:
+    build:
+      context: .
+      dockerfile: springmysqldb.Dockerfile
+    image: dionnecf/dcfmysqlserver
+    ports:
+      - "3306:3306"
+    networks:
+      - net-todo
+    environment:
+      MYSQL_DATABASE: tododb
+      MYSQL_USER: dcfuser
+      MYSQL_PASSWORD: dcfpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    container_name: dcfmysqlserver
+
+networks:
+  net-todo:
+    driver: bridge
+
+
